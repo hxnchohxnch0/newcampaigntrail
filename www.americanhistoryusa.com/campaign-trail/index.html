@@ -5,8 +5,25 @@
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
 <title>The New Campaign Trail</title>
-<link rel="stylesheet" href="../static/amusa_main_2016032801.css" type="text/css" media="screen" />
+<link id="pagestyle" rel="stylesheet" href="../static/amusa_presidential_2021112501.css" type="text/css" media="screen" />
 <link rel="shortcut icon" href="../static/34starcircle-2.png" />
+<script>
+function swapStyleSheet(sheet) {
+    document.getElementById("pagestyle").setAttribute("href", sheet);  
+}
+
+function initate() {
+    var style1 = document.getElementById("stylepresidential");
+    var style2 = document.getElementById("styleclassic");
+	var style3 = document.getElementById("stylered");
+
+    style1.onclick = function () { swapStyleSheet("../static/amusa_presidential_2021112501.css") };
+    style2.onclick = function () { swapStyleSheet("../static/amusa_main_2016032801.css") };
+	style3.onclick = function () { swapStyleSheet("../static/amusa_red_2021112501.css") };
+}
+
+window.onload = initate;
+</script>
 
 <link rel="canonical" href="index.html" />
 <meta name="description" content="Can you win a Presidential election? Step into the shoes of Barack Obama, Jimmy Carter, Abraham Lincoln, or others." />
@@ -294,11 +311,11 @@
 	</div>
 	<br><br><button id="submitMod">Submit</button>
 </div><br><br>
-<a href="http://www.americanhistoryusa.com" style="color:#FF6B6B">Original site</a> created by Dan Bryan &copy; 2012-2021
+<a href="http://www.americanhistoryusa.com">Original site</a> created by Dan Bryan &copy; 2012-2021
 <br> 
-Source code hosted on <a href="https://github.com/newcampaigntrail/newcampaigntrail" style="color:#FF6B6B">GitHub</a>
-<br> 
-Join our <a href="https://discord.gg/CfS6yTtjZj" style="color:#FF6B6B">Discord Server here!</a>
+Source code hosted on <a href="https://github.com/newcampaigntrail/newcampaigntrail">GitHub</a>
+<br>
+Join our Discord server <a href="https://discord.gg/CfS6yTtjZj">here</a>!
 </div>
 </div>
 <div id="1796_init" style="display:none"></div>
@@ -311,9 +328,6 @@ Join our <a href="https://discord.gg/CfS6yTtjZj" style="color:#FF6B6B">Discord S
 	banner = $('#header')[0];
     banner.src = "../static/images/banner_"+Math.floor((Math.random() * 6) + 1)+".png"
     banner.width = 1000
-    document.body.background = "../static/images/mlk.jpg"
-    $("#game_window")[0].style.backgroundColor = "#ff6b6b"
-    $(".container")[0].style.backgroundColor = "#930301"
 </script>
 <script>
 
