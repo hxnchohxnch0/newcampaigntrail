@@ -5,12 +5,13 @@ padding:0;
 margin:0;
 display:block;
 background-color:#BFE6FF;
+background-image:url("../static/images/mlk.jpg");
 }
 
 .container {
 padding:.3em;
 margin:0 auto;
-background-color:#FFF;
+background-color:rgb(147, 3, 1);
 border:.3em solid #C9C9C9;
 width:100.2em;
 }
@@ -644,7 +645,7 @@ display:none;
 }
 
 #game_window {
-background-color:#BFE6FF;
+background-color:rgb(255, 107, 107);
 margin:.5em;
 border-style:solid;
 border-color:#C9C9C9;
@@ -3040,4 +3041,8 @@ border-width:1px;
 border-color:#c9c9c9;
 width:80%;
 margin:0 auto;
+}
+
+a {
+color: #FF6B6B;
 }
