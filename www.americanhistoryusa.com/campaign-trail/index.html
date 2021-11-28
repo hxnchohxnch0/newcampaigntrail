@@ -15,11 +15,12 @@ function swapStyleSheet(sheet) {
 function initate() {
     var style1 = document.getElementById("stylepresidential");
     var style2 = document.getElementById("styleclassic");
-	var style3 = document.getElementById("stylered");
+    var style3 = document.getElementById("stylered");
+    var banner = document.getElementById("header");
 
-    style1.onclick = function () { swapStyleSheet("../static/amusa_presidential_2021112501.css") };
-    style2.onclick = function () { swapStyleSheet("../static/amusa_main_2016032801.css") };
-	style3.onclick = function () { swapStyleSheet("../static/amusa_red_2021112501.css") };
+    style1.onclick = function () { swapStyleSheet("../static/amusa_presidential_2021112501.css"); banner.src = "../static/images/banner_"+Math.floor((Math.random() * 8) + 1)+".png" };
+    style2.onclick = function () { swapStyleSheet("../static/amusa_main_2016032801.css"); banner.src = "../static/images/banner_classic.png" };
+    style3.onclick = function () { swapStyleSheet("../static/amusa_red_2021112501.css"); banner.src = "../static/images/banner_"+Math.floor((Math.random() * 6) + 1)+"old.png" };
 }
 
 window.onload = initate;
