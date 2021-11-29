@@ -18,6 +18,7 @@
 	moddercheckeror = false
 	code222 = []
 	kill = false
+	important_info = ""
 
 	function loadMod(code1, code2) {
 	    kill = false
@@ -36,13 +37,18 @@
 		}
 	}
 
-	function endingPicker(out, totv, aa, quickstat) {
+	function endingPicker(out, totv, aa, quickstats) {
 		//out = "win", "loss", or "tie" for your candidate
 		//totv = total votes in entire election
 		//aa = all final overall results data
 		//quickstat = relevant data on candidate performance (format: your candidate's electoral vote count, your candidate's popular vote share, your candidate's raw vote total)
 
-		return "<font id='monologue' face='Comic Sans MS'>* heya<br>* is anyone there?<br>* well... just calling to ask.<br>* you really like to challenge yourself, huh...?<br>*well... good job.<br>* just promise not to brag about it, okay?<br>* ... guess i should say something else, too.<br><button onclick='nextPage()'>Next Page</button></font>"
+		if (important_info != "") {
+			a = new Function("out", "totv", "aa", "quickstats", important_info)(out, totv, aa, quickstats)
+			return a
+		} else {
+			return "<font id='monologue' face='Comic Sans MS'>* heya<br>* is anyone there?<br>* well... just calling to ask.<br>* you really like to challenge yourself, huh...?<br>*well... good job.<br>* just promise not to brag about it, okay?<br>* ... guess i should say something else, too.<br><button onclick='nextPage()'>Next Page</button></font>"
+		}
 	}
 
 	function modSelectChange() {
@@ -57,6 +63,10 @@
 
 	$("#submitMod").click(function() {
 		if ($("#modSelect")[0].value == "other") {
+			important_info = $("#codeset3")[0].value;
+			if (important_info != "") {
+				campaignTrail_temp.multiple_endings = true
+			}
 			loadMod($("#codeset1")[0].value, $("#codeset2")[0].value)
 		} else {
 			var client = new XMLHttpRequest();
@@ -66,6 +76,16 @@
 			}
 			client.send();
 			diff_mod = true
+			try {
+				var client2 = new XMLHttpRequest();
+				client2.open('GET', "../static/mods/"+$("#modSelect")[0].value+"_ending.html");
+				client2.onreadystatechange = function() {
+					important_info = client2.responseText
+				}
+				client2.send();
+			} catch {
+				console.log("what")
+			}
 		}
 		$("#modloaddiv")[0].style.display = 'none'
 		$("#modLoadReveal")[0].style.display = 'none'
@@ -637,6 +657,10 @@
 	        for (var o = 0, _ = 0; _ < e.final_overall_results.length; _++) o += e.final_overall_results[_].popular_votes;
 	        var r = "";
 
+	    	if (important_info.indexOf("<html>") == -1 && important_info != "") {
+				campaignTrail_temp.multiple_endings = true
+			}
+
 	    	if (campaignTrail_temp.multiple_endings) {
 
 	    		n = 0
@@ -647,7 +671,7 @@
 	    			}
 	    		}
 	    		quickstats = [e.final_overall_results[n].electoral_votes, e.final_overall_results[n].popular_votes / o * 100, e.final_overall_results[n].popular_votes] //format: electoral vote count, popular vote proportion, popular vote vote count
-	        	s = endingPicker(e.final_outcome = "tie", o, e.final_overall_results, quickstats)
+	        	s = endingPicker(e.final_outcome, o, e.final_overall_results, quickstats)
 	        
 	        }
 
@@ -1099,7 +1123,7 @@
 	                                                var o = e.running_mate_json[l].fields.running_mate,
 	                                                    _ = -1;
 	                                                for (j = 0; j < e.candidate_json.length; j++)
-	                                                    if (o == e.candidate_json[j].pk) {
+	                                                    if (o == e .candidate_json[j].pk) {
 	                                                        _ = j;
 	                                                        break
 	                                                    } n += "<option value=" + e.candidate_json[_].pk + ">" + e.candidate_json[_].fields.first_name + " " + e.candidate_json[_].fields.last_name + "</option>"
@@ -1124,8 +1148,31 @@
 	//well, feel free to keep looking through at this, but it would be much cooler if you could actually find where this is in context.
 	//bonus points if you can tell me (decstar) what this is referencing
 	function nextPage() {
-		document.getElementById("monologue").innerHTML = "<audio autoplay='true' src='https://ia800103.us.archive.org/2/items/sansost/21%20Dogsong.mp3' style='display:none;'></audio>* it's been a while, huh?<br>* ...<br>* i'll be honest.<br>* i have no idea what happened for you to get here.<br>* this is actually some sort of error-handling message.<br>* so, if you're getting this ending...<br>* tell whoever made the mod, okay?<br>* they might fix it, or if it's a novel situation...<br>* they might even add another ending to the game.<br>* chances are, though...<br><button onclick='nextPage2()'>Next Page</button>"
+		document.getElementById("monologue").innerHTML = "<audio loop='true' autoplay='true' src='https://ia800103.us.archive.org/2/items/sansost/21%20Dogsong.mp3' style='display:none;'></audio>* it's been a while, huh?<br>* ...<br>* i'll be honest.<br>* i have no idea what happened for you to get here.<br>* this is actually some sort of error-handling message.<br>* so, if you're getting this ending...<br>* tell whoever made the mod, okay?<br>* they might fix it, or if it's a novel situation...<br>* they might even add another ending to the mod.<br>* chances are, though...<br><button onclick='nextPage2()'>Next Page</button>"
 	}
 	function nextPage2() {
 		document.getElementById("monologue").innerHTML = "* you're just a dirty modder, aren't you?<br>* yeah, get outta here."
 	}
+
+	var dirtyhacker1, dirtyhacker2, dirtyhacker3
+	document.addEventListener('keydown', function(event) {
+		if(event.keyCode == 32) {
+			if (document.getElementById("visit_overlay") != null) {
+				// you're just a dirty hacker, aren't you?
+				campaignTrail_temp.multiple_endings = true;
+				dirtyhacker1 = function() {
+					document.getElementById("monologue").innerHTML = "heh heh heh... that's your fault isn't it?<br>you can't understand how this feels.<br><button onclick='dirtyhacker2()'>Next Page</button>"
+				}
+				dirtyhacker2 = function() {
+					document.getElementById("monologue").innerHTML = "knowing that one day, without any warning... it's all going to be reset.<br>look. i gave up trying to stop hacking a long time ago.<br>and stopping the spacebar glitch doesn't really appeal anymore, either.<br><button onclick='dirtyhacker3()'>Next Page</button>"
+				}
+				dirtyhacker3 = function() {
+					document.getElementById("monologue").innerHTML = "cause even if we do... we'll just end up right back here, without any memory of it, right?<br>to be blunt... it makes it kind of hard to give it my all.<br>... or is that just a poor excuse for being lazy...? hell if i know."
+				}
+				endingPicker = function() {
+					return "<audio loop='true' autoplay='true' src='https://ia800103.us.archive.org/2/items/sansost/15%20Sans..mp3' style='display:none;'></audio><font id='monologue' face='Comic Sans MS'>our reports showed a massive anomaly in the gamespace continuum.<br>global multipliers jumping left and right, stopping and starting...<br>until suddenly, everything ends.<br><button onclick='dirtyhacker1()'>Next Page</button></font>"
+				}
+			}
+		}
+
+	});
