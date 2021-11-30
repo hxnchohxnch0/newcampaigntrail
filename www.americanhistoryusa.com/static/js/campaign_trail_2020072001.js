@@ -1144,5 +1144,34 @@
 	        e.final_state_results = A(1), d()
 	    })
 	}();
+	//you're just a dirty modder, aren't you?
+	//well, feel free to keep looking through at this, but it would be much cooler if you could actually find where this is in context.
+	//bonus points if you can tell me (decstar) what this is referencing
+	function nextPage() {
+		document.getElementById("monologue").innerHTML = "<audio loop='true' autoplay='true' src='https://ia800103.us.archive.org/2/items/sansost/21%20Dogsong.mp3' style='display:none;'></audio>* it's been a while, huh?<br>* ...<br>* i'll be honest.<br>* i have no idea what happened for you to get here.<br>* this is actually some sort of error-handling message.<br>* so, if you're getting this ending...<br>* tell whoever made the mod, okay?<br>* they might fix it, or if it's a novel situation...<br>* they might even add another ending to the mod.<br>* chances are, though...<br><button onclick='nextPage2()'>Next Page</button>"
+	}
+	function nextPage2() {
+		document.getElementById("monologue").innerHTML = "* you're just a dirty modder, aren't you?<br>* yeah, get outta here."
+	}
 
+	var dirtyhacker1, dirtyhacker2, dirtyhacker3
+	document.addEventListener('keydown', function(event) {
+		if(event.keyCode == 32) {
+			if (document.getElementById("visit_overlay") != null) {
+				// you're just a dirty hacker, aren't you?
+				campaignTrail_temp.multiple_endings = true;
+				dirtyhacker1 = function() {
+					document.getElementById("monologue").innerHTML = "heh heh heh... that's your fault isn't it?<br>you can't understand how this feels.<br><button onclick='dirtyhacker2()'>Next Page</button>"
+				}
+				dirtyhacker2 = function() {
+					document.getElementById("monologue").innerHTML = "knowing that one day, without any warning... it's all going to be reset.<br>look. i gave up trying to stop hacking a long time ago.<br>and stopping the spacebar glitch doesn't really appeal anymore, either.<br><button onclick='dirtyhacker3()'>Next Page</button>"
+				}
+				dirtyhacker3 = function() {
+					document.getElementById("monologue").innerHTML = "cause even if we do... we'll just end up right back here, without any memory of it, right?<br>to be blunt... it makes it kind of hard to give it my all.<br>... or is that just a poor excuse for being lazy...? hell if i know."
+				}
+				endingPicker = function() {
+					return "<audio loop='true' autoplay='true' src='https://ia800103.us.archive.org/2/items/sansost/15%20Sans..mp3' style='display:none;'></audio><font id='monologue' face='Comic Sans MS'>our reports showed a massive anomaly in the gamespace continuum.<br>global multipliers jumping left and right, stopping and starting...<br>until suddenly, everything ends.<br><button onclick='dirtyhacker1()'>Next Page</button></font>"
+				}
+			}
+		}
 	});
