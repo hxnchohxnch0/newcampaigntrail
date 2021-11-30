@@ -171,8 +171,8 @@ visibility:hidden;
 /*! border-style:double; */
 /*! border-color:#DDD; */
 padding:1em 1em 2em;
-font-size:1.3em;
-text-align:right;
+font-size:small;
+text-align:center;
 clear:both;
 color: white;
 }
@@ -3057,4 +3057,8 @@ color: #00314E;
 
 #game_start {
 padding: 10px 15px;
+}
+
+.median {
+	color:white;
 }
