@@ -6,7 +6,7 @@
 <head>
 <title>The New Campaign Trail</title>
 <link id="pagestyle" rel="stylesheet" href="../static/amusa_presidential_2021112501.css" type="text/css" media="screen" />
-<link rel="shortcut icon" href="../static/34starcircle-2.png" />
+<link rel="shortcut icon" href="../static/favicon.png" />
 <script>
 function swapStyleSheet(sheet) {
     document.getElementById("pagestyle").setAttribute("href", sheet);  
@@ -20,7 +20,7 @@ function initate() {
 
     style1.onclick = function () { swapStyleSheet("../static/amusa_presidential_2021112501.css"); banner.src = "../static/images/banner_"+Math.floor((Math.random() * 13) + 1)+".png" };
     style2.onclick = function () { swapStyleSheet("../static/amusa_main_2016032801.css"); banner.src = "../static/images/banner_classic.png" };
-    style3.onclick = function () { swapStyleSheet("../static/amusa_red_2021112501.css"); banner.src = "../static/images/banner_"+Math.floor((Math.random() * 6) + 1)+"old.png" };
+    style3.onclick = function () { swapStyleSheet("../static/amusa_red_2021112501.css"); banner.src = "../static/images/banner_"+Math.floor((Math.random() * 21) + 1)+"old.png" };
 }
 
 window.onload = initate;
@@ -68,7 +68,7 @@ window.onload = initate;
 
 <div id="game_window">
 <div class="game_header">
-<h2>NEW CAMPAIGN TRAIL</h2>
+<h2>NEW CAMPAIGN TRAIL<span style="font-size:small"> +</span></h2>
 </div>
 <div class="below_header" id="below_header">
 <div class="inner_window_front" id="inner_window_1">
@@ -85,7 +85,24 @@ window.onload = initate;
 
 </div>
 </div>
-<div class="footer">
+<table style="width:100%;padding:0.25em;" class="median">
+<tr>
+<td valign="top" style="text-align:left;width:50%;border:0px">
+<button onclick="if(document.getElementById('jukeboxdiv').style.display != 'none'){document.getElementById('jukeboxdiv').style.display = 'none'}else{document.getElementById('jukeboxdiv').style.display = 'block'}">Jukebox</button>
+<div id="jukeboxdiv" style="display:none">
+<select name="song" id="jukeSelect">
+<option value="soundtrack">Game Soundtrack</option>
+<option value="https://archive.org/download/Eisenhow1952/Eisenhow1952.mp3">1952 - I Like Ike</option>
+</select>
+<button id="selectSong">Select</button>
+<br>
+<audio controls id="campaigntrailmusic" src="" loop="true" tabindex="0" type="audio/mp3">Your browser does not support the jukebox.</audio>
+
+</audio>
+</div>
+
+</td>
+<td valign="top" style="text-align:right;width:50%;border:0px;">
 <button id="modLoadReveal" onclick="if(document.getElementById('modloaddiv').style.display != 'none'){document.getElementById('modloaddiv').style.display = 'none'}else{document.getElementById('modloaddiv').style.display = 'block'}">
 	Mod Loader
 </button><br><br>
@@ -115,9 +132,15 @@ window.onload = initate;
     <option value="1932_HooverCurtis">1932 (Hoover/Curtis)</option>
     <option value="1932_HooverBorah">1932 (Hoover/Borah)</option>
     <option value="1932_HooverWadsworth">1932 (Hoover/Wadsworth)</option>
-    <option value="1936B_LongGarner">1936B (Long/Garner)</option>
-    <option value="1936B_LongRoosevelt">1936B (Long/Roosevelt)</option>
-    <option value="1936B_LongWallace">1936B (Long/Wallace)</option>
+    <option value="1932b_BakerRitchie">1932b (BakerRitchie)</option>
+    <option value="1932b_BakerRobinson">1932b (Baker/Robinson)</option>
+    <option value="1932b_BakerCopeland">1932b (Baker/Copeland)</option>
+    <option value="1932b_CurtisFrance">1932b (Curtis/France)</option>
+    <option value="1932b_CurtisBorah">1932b (Curtis/Borah)</option>
+    <option value="1932b_CurtisStimson">1932b (Curtis/Stimson)</option>
+    <option value="1936B_LongGarner">1936b (Long/Garner)</option>
+    <option value="1936B_LongRoosevelt">1936b (Long/Roosevelt)</option>
+    <option value="1936B_LongWallace">1936b (Long/Wallace)</option>
     <option value="1940_RooseveltWallace">1940 (Roosevelt/Wallace)</option>
     <option value="1940_WillkieMcNary">1940 (Willkie/McNary)</option>
     <option value="1944_RooseveltTruman">1944 (Roosevelt/Truman)</option>
@@ -171,6 +194,7 @@ window.onload = initate;
     <option value="1972b_WallaceJackson">1972b (Wallace/Jackson)</option>
     <option value="1972b_WallaceSmothers">1972b (Wallace/Smothers)</option>
     <option value="1972b_WallaceYorty">1972b (Wallace/Yorty)</option>
+	<option value="1972c_MondaleHughes">1972c (Mondale/Hughes)</option>
     <option value="1976Reagan_CarterMondale">1976Reagan (Carter/Mondale)</option>
     <option value="1976Reagan_CarterChurch">1976Reagan (Carter/Church)</option>
     <option value="1976Reagan_CarterGlenn">1976Reagan (Carter/Glenn)</option>
@@ -197,6 +221,7 @@ window.onload = initate;
     <option value="1980_ReaganCrane">1980 (Reagan/Crane)</option>
     <option value="1980_ReaganHelms">1980 (Reagan/Helms)</option> 
     <option value="1980_ReaganRumsfeld">1980 (Reagan/Rumsfeld)</option>
+	<option value="1980b_KennedyMondale">1980b (Kennedy/Mondale)</option>
     <option value="1984_ReaganBush">1984 (Reagan/Bush)</option>
     <option value="1984_MondaleFerraro">1984 (Mondale/Ferraro)</option>
     <option value="1984_MondaleFeinstein">1984 (Mondale/Feinstein)</option>
@@ -263,6 +288,8 @@ window.onload = initate;
     <option value="2008b_GiulianiPerry">2008b (Giuliani/Perry)</option>
     <option value="2008c_GoreObama">2008c (Gore/Obama)</option>
     <option value="2008c_GoreClinton">2008c (Gore/Clinton)</option>
+	<option value="2008_TrumpObama">Trump2008 (Trump/Obama)</option>
+    <option value="2008_TrumpEdwards">Trump2008 (Trump/Edwards)</option>
     <option value="2012_RomneyTrump">2012 (Romney/Trump)</option>
     <option value="2012_RomneyAyotte">2012 (Romney/Ayotte)</option>
     <option value="2016_TrumpJones">2016 (Trump/Jones)</option>
@@ -302,6 +329,7 @@ window.onload = initate;
     <option value="2020a_BidenHarris">2020a (Biden/Harris)</option>
     <option value="2020a_BidenWhitmer">2020a (Biden/Whitmer)</option>
     <option value="2020a_TrumpPence">2020a (Trump/Pence)</option>
+	<option value="2020b_ClintonKaine">2020b (Clinton/Kaine)</option>
 		
 	</select>
 	<div id="customMenu"><br>
@@ -313,16 +341,17 @@ window.onload = initate;
   <textarea id="codeset3" width=400 height=300></textarea><br>
 	</div>
 	<br><br><button id="submitMod">Submit</button>
-</div><br><br>
-<a href="http://www.americanhistoryusa.com">Original site</a> created by Dan Bryan &copy; 2012-2021
-<br> 
-Source code hosted on <a href="https://github.com/newcampaigntrail/newcampaigntrail">GitHub</a>
-<br>
-Join our Discord server <a href="https://discord.gg/CfS6yTtjZj">here</a>!
-<br>
-<button id="stylepresidential">Presidential (Default)</button>
-<button id="styleclassic">Classic</button>
-<button id="stylered">Red</button>
+</div>
+</td>
+</tr>
+</table>
+<div class="footer">
+<br><br>
+<a href="http://www.americanhistoryusa.com">Original site</a> created by Dan Bryan &copy; 2012-2021 &#8226; Source code hosted on <a href="https://github.com/hxnchohxnch0/newcampaigntrail-plus">GitHub</a> &#8226; Join our Discord server <a href="https://discord.gg/CfS6yTtjZj">here</a>!
+<br><br>
+<button id="stylepresidential" style="font-size:smaller;">Presidential (Default)</button>
+<button id="styleclassic" style="font-size:smaller;">Classic</button>
+<button id="stylered" style="font-size:smaller;">Red</button>
 </div>
 </div>
 <div id="1796_init" style="display:none"></div>
@@ -330,6 +359,36 @@ Join our Discord server <a href="https://discord.gg/CfS6yTtjZj">here</a>!
 
 <script src="../../ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="../static/js/raphael.js"></script>
+<script>
+
+var buttonSong = document.getElementById("selectSong");
+
+buttonSong.onclick = function() {
+
+		if (document.getElementById('jukeSelect').value == 'soundtrack') {
+			var selectedSong = campaignTrail_temp.musicSrc;
+		} else {
+			var selectedSong = document.getElementById('jukeSelect').value;
+		}
+		document.getElementById('campaigntrailmusic').src = selectedSong;
+		console.log(selectedSong);
+		$('#campaigntrailmusic')[0].pause();
+		$('#campaigntrailmusic')[0].load();
+		$('#campaigntrailmusic')[0].play();
+		/*
+		if ($('#jukeSelect').val() == 'soundtrack') {
+		var selectedSong = campaignTrail_temp.musicSrc;
+		} else {
+			var selectedSong = $('#jukeSelect').val();
+		}
+		$('#campaigntrailaudio').attr('src',selectedSong);
+		console.log(selectedSong);
+		$('#campaigntrailmusic')[0].pause();
+		$('#campaigntrailmusic')[0].load();
+		$('#campaigntrailmusic')[0].play();
+		*/
+}
+</script>
 <script>
 	// Banner Stuff
 	banner = $('#header')[0];
